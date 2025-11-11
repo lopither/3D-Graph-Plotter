@@ -1,0 +1,135 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      4377,        125]
+NotebookOptionsPosition[      3966,        109]
+NotebookOutlinePosition[      4420,        127]
+CellTagsIndexPosition[      4377,        124]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Helper", " ", "to", " ", "safely", " ", "parse", " ", "user", " ", 
+    "input"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"safeParse", "[", "input_", "]"}], ":=", 
+    RowBox[{"Quiet", "@", 
+     RowBox[{"Check", "[", 
+      RowBox[{
+       RowBox[{"ToExpression", "[", 
+        RowBox[{"input", ",", "StandardForm", ",", "Hold"}], "]"}], ",", 
+       "$Failed"}], "]"}]}]}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Prompt", " ", "the", " ", "user", " ", "to", " ", "enter", " ", "the", " ",
+      "function"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"functionInput", "=", 
+     RowBox[{
+     "InputString", "[", "\"\<Enter a function of x and y:\>\"", "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"heldFunction", "=", 
+     RowBox[{"safeParse", "[", "functionInput", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Validate", " ", "function", " ", "input"}], "*)"}], "\n", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"heldFunction", "===", "$Failed"}], "||", 
+      RowBox[{"FreeQ", "[", 
+       RowBox[{"heldFunction", ",", "x"}], "]"}], "||", 
+      RowBox[{"FreeQ", "[", 
+       RowBox[{"heldFunction", ",", "y"}], "]"}]}], ",", 
+     RowBox[{
+     "Print", "[", "\"\<Invalid function input. Please use Wolfram Language \
+syntax with variables x and y.\>\"", "]"}], ",", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Unhold", " ", "and", " ", "evaluate", " ", "the", " ", "function", " ",
+        "for", " ", "plotting"}], "*)"}], 
+     RowBox[{
+      RowBox[{"f", "=", 
+       RowBox[{"ReleaseHold", "[", "heldFunction", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"Prompt", " ", "for", " ", "bounds"}], "*)"}], 
+      RowBox[{"xMin", "=", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{
+        "InputString", "[", "\"\<Enter the minimum value for x:\>\"", "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"xMax", "=", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{
+        "InputString", "[", "\"\<Enter the maximum value for x:\>\"", "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"yMin", "=", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{
+        "InputString", "[", "\"\<Enter the minimum value for y:\>\"", "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"yMax", "=", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{
+        "InputString", "[", "\"\<Enter the maximum value for y:\>\"", "]"}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", "Plot", "*)"}], 
+      RowBox[{"Plot3D", "[", 
+       RowBox[{
+        RowBox[{"Evaluate", "[", "f", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "xMin", ",", "xMax"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"y", ",", "yMin", ",", "yMax"}], "}"}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          RowBox[{"\"\<x\>\"", ",", "\"\<y\>\"", ",", "\"\<f(x,y)\>\""}], 
+          "}"}]}], ",", 
+        RowBox[{"PlotLabel", "->", "\"\<3D Plot of Your Function\>\""}], ",", 
+        RowBox[{"Mesh", "->", "None"}]}], "]"}]}]}], "]"}], "\n"}]}]], "Input",
+ CellChangeTimes->{{3.971846849701563*^9, 
+  3.9718468663732033`*^9}},ExpressionUUID->"45831a3d-7dec-d941-8410-\
+01fc7b46e60b"]
+},
+WindowSize->{1152, 585.6},
+WindowMargins->{{
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+LightDark->"Dark",
+FrontEndVersion->"14.3 for Microsoft Windows (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"086aa9b0-eb3f-674f-90d0-41112b251fbc"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 3408, 87, 313, "Input",ExpressionUUID->"45831a3d-7dec-d941-8410-01fc7b46e60b"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
